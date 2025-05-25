@@ -49,7 +49,7 @@ class Company(Scraper):
     employees = []
     headcount = None
 
-    def __init__(self, linkedin_url = None, name = None, about_us =None, website = None, phone = None, headquarters = None, founded = None, industry = None, company_type = None, company_size = None, specialties = None, showcase_pages =[], affiliated_companies = [], driver = None, scrape = True, get_employees = True, close_on_complete = True):
+    def __init__(self, linkedin_url = None, name = None, about_us =None, website = None, phone = None, headquarters = None, founded = None, industry = None, company_type = None, company_size = None, specialties = None, showcase_pages =[], affiliated_companies = [], driver = None, scrape = True, get_employees = True, close_on_complete = True,get=True):
         self.linkedin_url = linkedin_url
         self.name = name
         self.about_us = about_us
@@ -74,8 +74,8 @@ class Company(Scraper):
                 driver = webdriver.Chrome(driver_path)
             except:
                 driver = webdriver.Chrome()
-
-        driver.get(linkedin_url)
+        if get:
+            driver.get(linkedin_url)
         self.driver = driver
 
         if scrape:
